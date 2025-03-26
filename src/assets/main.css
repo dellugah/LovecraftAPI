@@ -1,0 +1,41 @@
+@import './base.css';
+
+#app {
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: var(--green);
+  transition: 0.3s ease-in-out;
+  font-weight: normal;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    cursor: pointer;
+    filter: var(--dropshadow3);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
