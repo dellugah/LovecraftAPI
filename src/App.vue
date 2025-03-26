@@ -12,14 +12,13 @@ const router = useRouter();
       <div class="header">
         <h1>Lovecraft API</h1>
         <div class="buttonContainer">
+          <div class="button"><router-link to="/">Home</router-link></div>
           <div class="button"><router-link to="/creatures">Creatures</router-link></div>
           <div class="button"><router-link to="/races">Races</router-link></div>
-          <div class="button"><router-link to="/">Home</router-link></div>
-<!--          <div class="button"><router-link to="/images">Images</router-link></div>-->
           <div class="button"><router-link to="/about">About</router-link></div>
         </div>
       </div>
-      <div class="mainForm">
+      <div class="routerView">
         <router-view></router-view>
       </div>
       <div class="footer"></div>
@@ -34,7 +33,7 @@ const router = useRouter();
 /*VARIABLES*/
 :root{
   --brightpurple: #6c00cc;
-  --green: #7fff54;
+  --green: #a1f867;
   --purple: #270049;
   --black: #000000;
   --lightpurple: #f9f4ff;
@@ -149,7 +148,7 @@ span{
   place-items: center;
   justify-items: center;
 }
-.mainForm{
+.routerView{
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -202,6 +201,39 @@ span{
   justify-content: center;
 }
 
+.creaturesPageHeader {
+  margin-top: -2.7em;
+  margin-bottom: -1em;
+  scale: .9;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-items: center;
+  justify-content: center;
+  filter: var(--dropshadow3) grayscale(100%);
+}
+.img{
+  margin-bottom: 2px;
+}
+.headerCreatures {
+  color: var(--black);
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 12em;
+  background-color: var(--green);
+  margin-left: -3px;
+  margin-right:-3px;
+  border-radius: .5em;
+}
+.heading {
+  font-size: 1em;
+  color: var(--black);
+  font-weight: bold;
+}
 #app{
   display: flex;
   flex-direction: row;
