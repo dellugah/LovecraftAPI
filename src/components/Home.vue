@@ -5,7 +5,7 @@
 <template>
   <div class="homeContainer">
     <img class="image" src="/eye.gif" alt="" height="200" width="auto">
-    <h2><span>Select a category to start</span></h2>
+    <h2><span>Welcome mortal</span></h2>
   </div>
 </template>
 

@@ -32,7 +32,7 @@ const router = useRouter();
 <style>
 /*VARIABLES*/
 :root{
-  --brightpurple: #6c00cc;
+  --brightpurple: #9927ff;
   --green: #a1f867;
   --purple: #270049;
   --black: #000000;
@@ -84,6 +84,7 @@ h1, h2, h3, h4, h5, h6{
   font-weight: bold;
 }
 span{
+  font-weight: bold;
   color: var(--green);
 }
 
@@ -202,6 +203,7 @@ span{
 }
 
 .creaturesPageHeader {
+  z-index: 7;
   margin-top: -2.7em;
   margin-bottom: -1em;
   scale: .9;
@@ -223,7 +225,8 @@ span{
   justify-items: center;
   justify-content: center;
   height: 45px;
-  width: 12em;
+  width: auto;
+  padding: 1em 2em;
   background-color: var(--green);
   margin-left: -3px;
   margin-right:-3px;
