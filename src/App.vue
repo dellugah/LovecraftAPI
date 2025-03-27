@@ -32,7 +32,7 @@ const router = useRouter();
 <style>
 /*VARIABLES*/
 :root{
-  --brightpurple: #9927ff;
+  --brightpurple: #b562ff;
   --green: #a1f867;
   --purple: #270049;
   --black: #000000;
@@ -56,6 +56,7 @@ body{
   flex-wrap: wrap; /* Allows wrapping when the window resizes */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
+
 
   background: url('/sprayLeft.png') no-repeat left center,
   url('/sprayRight.png') no-repeat right center,
@@ -200,6 +201,20 @@ span{
   place-items: center;
   justify-items: center;
   justify-content: center;
+}
+.loading{
+  filter: hue-rotate(-90deg) contrast(1.1) brightness(1.5) saturate(1.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center horizontally */
+  align-items: center;    /* Center vertically */
+  position: absolute;
+  top: 300px;
+}
+.purple{
+  color: var(--brightpurple);
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 .creaturesPageHeader {

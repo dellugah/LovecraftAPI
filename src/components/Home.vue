@@ -4,8 +4,8 @@
 
 <template>
   <div class="homeContainer">
-    <img class="image" src="/eye.gif" alt="" height="200" width="auto">
-    <h2><span>Welcome mortal</span></h2>
+    <img class="image" src="/lovecraftGreen.png" alt="" height="150" width="auto">
+    <h4><span>This web app is inspired by the imagination of Lovecraft.</span></h4>
   </div>
 </template>
 
@@ -16,6 +16,12 @@
   place-items: center;
   justify-items: center;
   padding: 1em;
-  margin-top: 8em;
+  margin-top: 6em;
+  margin-bottom: 2em;
+}
+
+.image{
+  filter: var(--dropshadow3);
+  margin-bottom: 2em;
 }
 </style>

@@ -12,6 +12,9 @@ async function fetchCreatureNames() {
       throw new Error('Something went wrong');
     }
     creatures.value = await response.json();
+    creatures.value.forEach(creature => {
+      creature.name = capitalizeWords(creature.name);
+    });
 } catch(err) {
   console.log(err);}
 }
@@ -50,53 +53,61 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="creaturesPageHeader">
-    <img class="img" src="/green_resized800_tentaclesLeft.png" alt="" height="100" width="auto">
-    <div class="headerCreatures">
-      <h2><span class="heading">CREATURES</span></h2>
+  <section v-if="creatures?.length > 0">
+    <div class="creaturesPageHeader">
+      <img class="img" src="/green_resized800_tentaclesLeft.png" alt="" height="100" width="auto">
+      <div class="headerCreatures">
+        <h2><span class="heading">CREATURES</span></h2>
+      </div>
+      <img src="/green_resized800_tentaclesRight.png" alt="" height="100" width="auto">
     </div>
-    <img src="/green_resized800_tentaclesRight.png" alt="" height="100" width="auto">
-  </div>
-  <div class="creaturesMainContainer">
-    <div class="creaturesSelectionContainer">
-      <img id="tentacleTop" src="/tentaclesTop.png" alt="" height="150" width="auto">
-      <div class="creaturesScrollable">
-        <div class="creatureBlock"></div>
-        <div class="creaturesSelection" v-for="(creature, index) in creatures" @click="selectCreature(creature.id)">
-          <span :id="creature.id" class="creatureName">{{creature.name}}</span>
+    <div class="creaturesMainContainer">
+      <div class="creaturesSelectionContainer">
+        <img id="tentacleTop" src="/tentaclesTop.png" alt="" height="150" width="auto">
+        <div class="creaturesScrollable">
+          <div class="creatureBlock"></div>
+          <div class="creaturesSelection" v-for="(creature, index) in creatures" @click="selectCreature(creature.id)">
+            <span :id="creature.id" class="creatureName">{{creature.name}}</span>
+          </div>
+          <div class="creatureBlock"></div>
         </div>
-        <div class="creatureBlock"></div>
+        <img id="tentacleBottom" src="/tentaclesBottom.png" alt="" height="150" width="auto">
       </div>
-      <img id="tentacleBottom" src="/tentaclesBottom.png" alt="" height="150" width="auto">
-    </div>
 
-    <div class="creaturesProfileContainer" v-if="creature?.name">
-      <div class="creatureInfo">
-        <p><span id="purple">{{ creature?.name }}</span></p>
-        <p><span>Author:</span> {{ creature.author }}</p>
-        <p><span>Canon:</span> {{ creature.canon }}</p>
-        <p><span>Category:</span> {{ creature.category }}</p>
-      </div>
-      <!-- Images -->
-      <div class="images">
-        <img class="creaturePhoto" v-for="(imgUrl, index) in creature.img" :key="index" :src="imgUrl" alt="Creature Image" width="100px" height="auto"/>
-      </div>
-      <!-- Overview -->
-      <div class="overview">
-        <p>{{ creature.overview }}</p>
+      <div class="creaturesProfileContainer" v-if="creature?.name">
+        <div class="creatureInfo">
+          <p><span class="purple">{{ creature?.name }}</span></p>
+          <p><span>Author:</span> {{ creature.author }}</p>
+          <p><span>Canon:</span> {{ creature.canon }}</p>
+          <p><span>Category:</span> {{ creature.category }}</p>
+        </div>
+        <!-- Images -->
+        <div class="images">
+          <img class="creaturePhoto" v-for="(imgUrl, index) in creature.img.slice(0, 3)"
+               :key="index" :src="imgUrl" alt="Creature Image" width="100px" height="auto"/>
+        </div>
+        <!-- Overview -->
+        <div class="overview">
+          <p>{{ creature.overview }}</p>
+        </div>
+        <!-- Link to more information -->
         <div class="wiki">
           <a :href="creature.wikiUrl" target="_blank">Read more on Wiki</a>
         </div>
       </div>
-      <!-- Link to more information -->
-    </div>
-    <div class="creaturesProfileContainer" v-else>
-      <div class="homeContainer">
-        <img class="image" src="/eye.gif" alt="" height="200" width="auto">
-        <h2><span>Choose a creature</span></h2>
+      <div class="creaturesProfileContainer" v-else>
+        <div class="homeContainer">
+          <img class="image" src="/eye.gif" alt="" height="250" width="auto">
+          <h2><span>Choose a creature</span></h2>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+  <section v-else class="loading">
+    <img src="/spellCircle.gif" alt="" height="150" width="auto">
+    <h5><span>Summoning...</span></h5>
+  </section>
+
 </template>
 
 <style scoped>
@@ -147,6 +158,7 @@ onMounted(() => {
   width: 100%; /* Full width to fit the parent container */
   pointer-events: auto; /* Ensure scroll-ability */
   scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
 }
 .creaturesProfileContainer{
   overflow: visible;
@@ -173,12 +185,12 @@ onMounted(() => {
   background-color: var(--green);
   border-radius: 1em;
   min-height: 3em;
-  width: 15em;
+  width: 16em;
   position: relative;
 }
 .creaturesSelection:hover{
-  background-color: white;
-  filter: drop-shadow(0px 0px 10px white);
+  background-color: var(--brightpurple);
+  filter: drop-shadow(0px 0px 10px var(--brightpurple));
   cursor: pointer;
 }
 .creatureName{
@@ -225,10 +237,12 @@ onMounted(() => {
 }
 .wiki{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   place-items: center;
-  justify-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: -1em;
+  margin-left: -15em;
 }
 .homeContainer{
   display: flex;
@@ -248,10 +262,5 @@ onMounted(() => {
   margin-top: -150px;
   filter: drop-shadow(0px 0px 10px var(--black));
   pointer-events: none; /* Allows interaction with the scrollable content */
-}
-#purple{
-  color: var(--brightpurple);
-  font-weight: bold;
-  font-size: 1.5em;
 }
 </style>
