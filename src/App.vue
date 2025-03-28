@@ -56,17 +56,17 @@ const router = useRouter();
 
 /*BASIC ELEMENTS*/
 body{
-  overflow: hidden; /* Prevent scrolling */
-  height: 100%; /* Ensure the page doesn't grow beyond the viewport */
+  overflow: hidden;
+  height: 100%;
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping when the window resizes */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 
 
   background: url('/sprayLeft.png') no-repeat left center,
   url('/sprayRight.png') no-repeat right center,
-  var(--purple); /* Image on the right */
+  var(--purple);
 }
 .button{
   font-family: var(--font), 'serif';
@@ -195,7 +195,7 @@ span{
   width: 100%;
 }
 .footer{
-  position: absolute; /* Change this */
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 5em;
@@ -211,8 +211,8 @@ span{
 .loading{
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center horizontally */
-  align-items: center;    /* Center vertically */
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 300px;
 }
@@ -228,7 +228,7 @@ span{
 .creaturesPageHeader {
   z-index: 7;
   scale: 1.5;
-  pointer-events: none; /* Allows interaction with the scrollable content */
+  pointer-events: none;
   margin-top: -2.5em;
   margin-bottom: -1em;
   display: flex;

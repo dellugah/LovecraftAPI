@@ -3,7 +3,10 @@ import {onMounted, ref} from "vue";
 
 const creatures = ref([]);
 const creature = ref([]);
-let loading = ref(false);
+
+//utility vars
+let loading = ref(false); //spawns loading icon
+const fetchInProcess = ref(false); //prevent multiple fetch requests
 
 //fetch the initial creature list
 async function fetchCreatureNames() {
@@ -19,24 +22,33 @@ async function fetchCreatureNames() {
 } catch(err) {
   console.log(err);}
 }
+
 //fetch the creature id
 async function selectCreature(id){
   loading.value = true;
-  try{
-    const response = await fetch('https://lovecraftapirest.fly.dev/api/creatures/' + id);
-    if(!response.ok){
-      throw new Error('Something went wrong');
+  if(fetchInProcess.value === false){
+    try{
+      fetchInProcess.value = true;
+      const response = await fetch('https://lovecraftapirest.fly.dev/api/creatures/' + id);
+      if(!response.ok){
+        throw new Error('Something went wrong');
+      }
+      creature.value = await response.json();
+      creature.value.name = capitalizeWords(creature.value.name);
+      if(creature.value.overview === 'undefined'){
+        creature.value.overview = "No information available";
+      }
+      fetchInProcess.value = false;
+      loading.value = false;
     }
-    creature.value = await response.json();
-    creature.value.name = capitalizeWords(creature.value.name);
-    if(creature.value.overview === 'undefined'){
-      creature.value.overview = "No information available";
+    catch(err) {
+      console.log(err);
+      loading.value = false;
+      fetchInProcess.value = false;
     }
-    loading.value = false;
   }
-  catch(err) {
-    console.log(err);
-    loading.value = false;
+  else{
+    console.log('Fetch in progress, please wait a moment.');
   }
 }
 
@@ -125,8 +137,8 @@ onMounted(() => {
 }
 .creaturesSelectionContainer{
   z-index: 3;
-  overflow-y: auto; /* Enables vertical scrolling */
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -139,16 +151,16 @@ onMounted(() => {
   width: 20em;
 }
 .creaturesSelectionContainer::before {
-  content: ''; /* The pseudo-element has no content */
-  position: absolute; /* Fix it to the container itself */
-  top: 0; /* Start at the top of the container */
+  content: '';
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3; /* Place it above the scrollable content */
-  pointer-events: none; /* Allows interaction with the scrollable content */
-  box-shadow: inset 0 50px 40px rgb(0, 0, 0), /* Top shadow for fade */
-  inset 0 -50px 40px rgb(0, 0, 0); /* Bottom shadow for fade */
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: inset 0 50px 40px rgb(0, 0, 0),
+  inset 0 -50px 40px rgb(0, 0, 0);
 }
 .creaturesScrollable {
   display: grid;
@@ -156,12 +168,12 @@ onMounted(() => {
   place-items: center;
   justify-items: center;
   justify-content: center;
-  overflow-y: auto; /* Enable scrolling inside this layer */
-  overflow-x: hidden; /* No horizontal scrolling */
-  height: 100%; /* Full height to fit the parent container */
-  width: 100%; /* Full width to fit the parent container */
-  pointer-events: auto; /* Ensure scroll-ability */
-  scrollbar-width: none; /* Firefox */
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  pointer-events: auto;
+  scrollbar-width: none;
   scroll-behavior: smooth;
 }
 .creaturesProfileContainer{
@@ -241,11 +253,11 @@ onMounted(() => {
   padding-right: 1em;
   max-width: 25em;
   max-height: 17em;
-  overflow-y: auto; /* Enable scrolling inside this layer */
-  overflow-x: hidden; /* No horizontal scrolling */
-  height: 100%; /* Full height to fit the parent container */
-  width: 100%; /* Full width to fit the parent container */
-  pointer-events: auto; /* Ensure scroll-ability */
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  pointer-events: auto;
 }
 .wiki{
   display: flex;
@@ -267,13 +279,13 @@ onMounted(() => {
   z-index: 5;
   margin-bottom: -149px;
   filter: drop-shadow(0px 0px 10px var(--black));
-  pointer-events: none; /* Allows interaction with the scrollable content */
+  pointer-events: none;
 }
 #tentacleBottom{
   z-index: 5;
   margin-top: -150px;
   filter: drop-shadow(0px 0px 10px var(--black));
-  pointer-events: none; /* Allows interaction with the scrollable content */
+  pointer-events: none;
 }
 #loading{
   filter: hue-rotate(90deg) contrast(1.1) brightness(1.5) saturate(1.5);
