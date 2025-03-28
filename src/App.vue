@@ -1,6 +1,5 @@
 <script setup>
 import {useRouter} from "vue-router";
-import { SpeedInsights } from "@vercel/speed-insights/vue"
 
 const router = useRouter();
 </script>
