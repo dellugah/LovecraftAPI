@@ -10,7 +10,13 @@ const router = useRouter();
     <img class="octImgLeft" src="/tentaclesLeft.png" alt="">
     <div class="mainContainer">
       <div class="header">
-        <h1>Lovecraft API</h1>
+        <div class="creaturesPageHeader">
+          <img class="img" src="/green_resized800_tentaclesLeft.png" alt="" height="100" width="auto">
+          <div class="headerCreatures">
+            <h2><span class="heading">Lovecraft API</span></h2>
+          </div>
+          <img class="img" src="/green_resized800_tentaclesRight.png" alt="" height="100" width="auto">
+        </div>
         <div class="buttonContainer">
           <div class="button"><router-link to="/">Home</router-link></div>
           <div class="button"><router-link to="/creatures">Creatures</router-link></div>
@@ -33,10 +39,10 @@ const router = useRouter();
 /*VARIABLES*/
 :root{
   --brightpurple: #b562ff;
-  --green: #a1f867;
+  --green: #7cfc58;
   --purple: #270049;
   --black: #000000;
-  --lightpurple: #f9f4ff;
+  --lightpurple: #efdfff;
   --lightblack: #111113;
   --gray: #1e1e1e;
   --borderradius: 1em;
@@ -81,7 +87,7 @@ body{
 h1, h2, h3, h4, h5, h6{
   scale: 1.3;
   font-family: var(--font), 'serif';
-  color: var(--lightpurple);
+  color: white;
   font-weight: bold;
 }
 span{
@@ -203,7 +209,6 @@ span{
   justify-content: center;
 }
 .loading{
-  filter: hue-rotate(-90deg) contrast(1.1) brightness(1.5) saturate(1.5);
   display: flex;
   flex-direction: column;
   justify-content: center; /* Center horizontally */
@@ -216,21 +221,27 @@ span{
   font-weight: bold;
   font-size: 1.5em;
 }
-
+.white{
+  color: #e4e4e4;
+  font-weight: bold;
+}
 .creaturesPageHeader {
   z-index: 7;
-  margin-top: -2.7em;
+  scale: 1.5;
+  pointer-events: none; /* Allows interaction with the scrollable content */
+  margin-top: -2.5em;
   margin-bottom: -1em;
-  scale: .9;
   display: flex;
   flex-direction: row;
   place-items: center;
   justify-items: center;
   justify-content: center;
-  filter: var(--dropshadow3) grayscale(100%);
+  filter: drop-shadow(0px 0px 2px var(--green)) grayscale(100%) contrast(140%);
 }
 .img{
   margin-bottom: 2px;
+  margin-left:-5px;
+  margin-right: -5px;
 }
 .headerCreatures {
   color: var(--black);
@@ -241,7 +252,7 @@ span{
   justify-content: center;
   height: 45px;
   width: auto;
-  padding: 1em 2em;
+  padding: 1em 2.5em;
   background-color: var(--green);
   margin-left: -3px;
   margin-right:-3px;

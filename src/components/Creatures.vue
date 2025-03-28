@@ -3,8 +3,9 @@ import {onMounted, ref} from "vue";
 
 const creatures = ref([]);
 const creature = ref([]);
+let loading = ref(false);
 
-
+//fetch the initial creature list
 async function fetchCreatureNames() {
   try{
     const response = await fetch('https://lovecraftapirest.fly.dev/api/creatures');
@@ -18,7 +19,9 @@ async function fetchCreatureNames() {
 } catch(err) {
   console.log(err);}
 }
+//fetch the creature id
 async function selectCreature(id){
+  loading.value = true;
   try{
     const response = await fetch('https://lovecraftapirest.fly.dev/api/creatures/' + id);
     if(!response.ok){
@@ -29,20 +32,23 @@ async function selectCreature(id){
     if(creature.value.overview === 'undefined'){
       creature.value.overview = "No information available";
     }
+    loading.value = false;
   }
   catch(err) {
     console.log(err);
+    loading.value = false;
   }
 }
 
+// Capitalize first character and lowercase the rest
 function capitalizeWords(string) {
-  if (!string) return ''; // Handle empty or null strings
+  if (!string) return '';
   return string
-      .split(' ') // Split the string by spaces into an array of words
+      .split(' ')
       .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() // Capitalize first character and lowercase the rest
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
       )
-      .join(' '); // Join the array back into a single string
+      .join(' ');
 }
 
 onMounted(() => {
@@ -54,13 +60,6 @@ onMounted(() => {
 
 <template>
   <section v-if="creatures?.length > 0">
-    <div class="creaturesPageHeader">
-      <img class="img" src="/green_resized800_tentaclesLeft.png" alt="" height="100" width="auto">
-      <div class="headerCreatures">
-        <h2><span class="heading">CREATURES</span></h2>
-      </div>
-      <img src="/green_resized800_tentaclesRight.png" alt="" height="100" width="auto">
-    </div>
     <div class="creaturesMainContainer">
       <div class="creaturesSelectionContainer">
         <img id="tentacleTop" src="/tentaclesTop.png" alt="" height="150" width="auto">
@@ -73,13 +72,12 @@ onMounted(() => {
         </div>
         <img id="tentacleBottom" src="/tentaclesBottom.png" alt="" height="150" width="auto">
       </div>
-
       <div class="creaturesProfileContainer" v-if="creature?.name">
         <div class="creatureInfo">
           <p><span class="purple">{{ creature?.name }}</span></p>
-          <p><span>Author:</span> {{ creature.author }}</p>
-          <p><span>Canon:</span> {{ creature.canon }}</p>
-          <p><span>Category:</span> {{ creature.category }}</p>
+          <p><span class="white">Author:</span> {{ creature.author }}</p>
+          <p><span class="white">Canon:</span> {{ creature.canon }}</p>
+          <p><span class="white">Category:</span> {{ creature.category }}</p>
         </div>
         <!-- Images -->
         <div class="images">
@@ -97,14 +95,19 @@ onMounted(() => {
       </div>
       <div class="creaturesProfileContainer" v-else>
         <div class="homeContainer">
-          <img class="image" src="/eye.gif" alt="" height="250" width="auto">
-          <h2><span>Choose a creature</span></h2>
+          <img class="image" src="/eye.gif" alt="" height="150" width="auto">
+          <h3><span class="white">Choose an eldritch being.</span></h3>
+        </div>
+      </div>
+      <div class="creaturesProfileContainer" v-if="loading">
+        <div class="homeContainer">
+          <img id="loadingBottom" src="/spellCircle.gif" alt="" height="150" width="auto">
         </div>
       </div>
     </div>
   </section>
   <section v-else class="loading">
-    <img src="/spellCircle.gif" alt="" height="150" width="auto">
+    <img id="loading" src="/spellCircle.gif" alt="" height="150" width="auto">
     <h5><span>Summoning...</span></h5>
   </section>
 
@@ -130,6 +133,7 @@ onMounted(() => {
   justify-items: center;
   justify-content: center;
   position: absolute;
+  margin-top: 5em;
   left: 2em;
   height: 35em;
   width: 20em;
@@ -167,7 +171,6 @@ onMounted(() => {
   place-items: center;
   justify-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 20px var(--black);
   border-radius: 1em;
   position: absolute;
   right: 5em;
@@ -175,6 +178,7 @@ onMounted(() => {
   width: 37em;
 }
 .creaturesSelection{
+  user-select: none;
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -187,12 +191,20 @@ onMounted(() => {
   min-height: 3em;
   width: 16em;
   position: relative;
+  transition: 0.1s ease-in-out;
 }
 .creaturesSelection:hover{
   background-color: var(--brightpurple);
   filter: drop-shadow(0px 0px 10px var(--brightpurple));
   cursor: pointer;
+  scale: 1.05;
 }
+.creaturesSelection:active{
+  background-color: var(--lightpurple);
+  filter: drop-shadow(0px 0px 10px var(--lightpurple));
+  scale: 1;
+}
+
 .creatureName{
   font-weight: bold;
   color: var(--black);
@@ -212,11 +224,11 @@ onMounted(() => {
   top: 1em;
 }
 .images{
+  position: absolute;
   z-index: 4;
   display:grid;
   place-items: center;
   justify-items: center;
-  position: absolute;
   right: 1em;
   top: 0;
   max-width: 20em;
@@ -262,5 +274,21 @@ onMounted(() => {
   margin-top: -150px;
   filter: drop-shadow(0px 0px 10px var(--black));
   pointer-events: none; /* Allows interaction with the scrollable content */
+}
+#loading{
+  filter: hue-rotate(90deg) contrast(1.1) brightness(1.5) saturate(1.5);
+  mix-blend-mode: screen;
+}
+#loadingBottom{
+  filter: hue-rotate(90deg) contrast(1.1) brightness(1.5) saturate(1.5);
+  mix-blend-mode: screen;
+  position: absolute;
+  bottom: -7em;
+  right: -5em;
+  scale: .7;
+  transform: scaleY(-1);
+}
+.image{
+  margin-bottom: 2em;
 }
 </style>
