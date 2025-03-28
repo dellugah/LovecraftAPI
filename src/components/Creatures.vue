@@ -1,29 +1,31 @@
 <script setup>
 import {onMounted, ref} from "vue";
 
+// vars
 const creatures = ref([]);
 const creature = ref([]);
 
-//utility vars
+// utility vars
 let loading = ref(false); //spawns loading icon
 const fetchInProcess = ref(false); //prevent multiple fetch requests
 
-//fetch the initial creature list
+// fetch the initial creature list
 async function fetchCreatureNames() {
   try{
     const response = await fetch('https://lovecraftapirest.fly.dev/api/creatures');
     if(!response.ok){
       throw new Error('Something went wrong');
+    }else{
+      creatures.value = await response.json();
+      creatures.value.forEach(creature => {
+        creature.name = capitalizeWords(creature.name);
+      });
     }
-    creatures.value = await response.json();
-    creatures.value.forEach(creature => {
-      creature.name = capitalizeWords(creature.name);
-    });
 } catch(err) {
   console.log(err);}
 }
 
-//fetch the creature id
+// fetch the creature id
 async function selectCreature(id){
   loading.value = true;
   if(fetchInProcess.value === false){
@@ -63,6 +65,12 @@ function capitalizeWords(string) {
       .join(' ');
 }
 
+// Open images on a new tab
+function openInNewTab(url) {
+  window.open(url, '_blank');
+}
+
+
 onMounted(() => {
   fetchCreatureNames();
   selectCreature();
@@ -94,7 +102,7 @@ onMounted(() => {
         <!-- Images -->
         <div class="images">
           <img class="creaturePhoto" v-for="(imgUrl, index) in creature.img.slice(0, 3)"
-               :key="index" :src="imgUrl" alt="Creature Image" width="100px" height="auto"/>
+               :key="index" :src="imgUrl" alt="Creature Image" width="100px" height="auto" @click="openInNewTab(imgUrl)"/>
         </div>
         <!-- Overview -->
         <div class="overview">
@@ -228,6 +236,7 @@ onMounted(() => {
 }
 .creaturePhoto{
   margin: .5em;
+  cursor: pointer;
 }
 .creatureInfo{
   margin-top: 1em;

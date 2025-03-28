@@ -1,5 +1,7 @@
 <script setup>
 import {useRouter} from "vue-router";
+import { SpeedInsights } from "@vercel/speed-insights/vue"
+
 const router = useRouter();
 </script>
 
@@ -25,7 +27,7 @@ const router = useRouter();
         </div>
       </div>
       <div class="routerView">
-        <router-view></router-view>
+        <router-view/>
       </div>
       <div class="footer"></div>
     </div>
