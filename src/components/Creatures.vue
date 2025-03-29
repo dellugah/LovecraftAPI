@@ -92,6 +92,7 @@ onMounted(() => {
         </div>
         <img id="tentacleBottom" src="/tentaclesBottom.png" alt="" height="150" width="auto">
       </div>
+<!--      if creature is loaded      -->
       <div class="creaturesProfileContainer" v-if="creature?.name">
         <div class="creatureInfo">
           <p><span class="purple">{{ creature?.name }}</span></p>
@@ -113,12 +114,14 @@ onMounted(() => {
           <a :href="creature.wikiUrl" target="_blank">Read more on Wiki</a>
         </div>
       </div>
+<!--      if no creature is selected     -->
       <div class="creaturesProfileContainer" v-else>
         <div class="homeContainer">
           <img class="image" src="/eye.gif" alt="" height="150" width="auto">
           <h3><span class="white">Choose an eldritch being.</span></h3>
         </div>
       </div>
+<!--      if creature fetch is loading     -->
       <div class="creaturesProfileContainer" v-if="loading">
         <div class="homeContainer">
           <img id="loadingBottom" src="/spellCircle.gif" alt="" height="150" width="auto">
@@ -126,6 +129,7 @@ onMounted(() => {
       </div>
     </div>
   </section>
+<!--  loading div -->
   <section v-else class="loading">
     <img id="loading" src="/spellCircle.gif" alt="" height="150" width="auto">
     <h5><span>Summoning...</span></h5>
@@ -245,13 +249,15 @@ onMounted(() => {
   top: 1em;
 }
 .images{
+  padding: .25em;
+  border-radius: .5em;
+  margin-top: 4.5em;
   position: absolute;
   z-index: 4;
   display:grid;
   place-items: center;
   justify-items: center;
-  right: 1em;
-  top: 0;
+  right: 0;
   max-width: 20em;
 }
 .overview{
@@ -301,6 +307,7 @@ onMounted(() => {
   mix-blend-mode: screen;
 }
 #loadingBottom{
+  z-index: 7;
   filter: hue-rotate(90deg) contrast(1.1) brightness(1.5) saturate(1.5);
   mix-blend-mode: screen;
   position: absolute;
