@@ -57,10 +57,13 @@ const router = useRouter();
 
 /*BASIC ELEMENTS*/
 body{
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
   height: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  place-items: center;
   justify-content: center;
   align-items: center;
 
