@@ -6,9 +6,9 @@ const router = useRouter();
 
 <template>
   <div class="mainHomeContainer">
-    <img class="tentacleBackground" src="/green_resized800_tentaclesLeftbackup.png" alt="">
+    <img class="tentacleBackground" src="/tentaculos_arestassolidas_verde.gif" alt="">
     <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">
-    <img class="octImgLeft" src="/tentaclesLeft.png" alt="">
+    <img class="octImgLeft" src="/tentaculos_rasterizado.gif" alt="">
     <div class="mainContainer">
       <div class="header">
         <div class="creaturesPageHeader">
@@ -30,7 +30,7 @@ const router = useRouter();
       </div>
       <div class="footer"></div>
     </div>
-    <img class="octImgRight" src="/tentaclesRight.png" alt="">
+    <img class="octImgRight" src="/tentaculos_rasterizado.gif" alt="">
     <img class="particlesRight" src="/particle.gif" alt="" width="500px" height="auto">
     <img class="tentacleBackground" src="/green_resized800_tentaclesRightbackup.png" alt="">
   </div>
@@ -47,8 +47,8 @@ const router = useRouter();
   --lightblack: #111113;
   --gray: #1e1e1e;
   --borderradius: 1em;
-  --dropshadow1: drop-shadow(-10px 10px 7px rgba(0, 0, 0, 0.95));
-  --dropshadow2: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.95));
+  --dropshadow1: drop-shadow(-10px 10px 15px rgba(0, 0, 0, 0.95));
+  --dropshadow2: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.95));
   --dropshadow3: drop-shadow(0px 0px 5px var(--green));
   --dropshadow4: drop-shadow(0px 10px 7px rgba(0, 0, 0, 0.95));
   --font: 'Courier New', 'monospace';
@@ -120,24 +120,27 @@ span{
 
 /*IMAGES*/
 .octImgLeft{
+  transform: scaley(-1);
+  scale: 1.1;
   z-index: 1;
-  margin-bottom: 4em;
-  margin-right: -1em;
+  margin-right: -2em;
   margin-left: -28em;
   filter: var(--dropshadow2);
 }
 .octImgRight{
+  transform: scaleX(-1) scaley(-1);
+  scale: 1.1;
   z-index: 1;
-  margin-bottom: 4em;
-  margin-left: -1em;
+  margin-left: -2em;
   margin-right: -28em;
   filter: var(--dropshadow1);
 }
 .tentacleBackground{
+  margin-right:-2em;
   z-index: -2;
   height: 600px;
   width: auto;
-  scale: 1.5;
+  scale: 1.2;
   filter: var(--dropshadow2);
 }
 
