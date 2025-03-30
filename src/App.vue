@@ -7,8 +7,9 @@ const router = useRouter();
 <template>
   <div class="mainHomeContainer">
     <img class="tentacleBackground" src="/green_resized800_tentaclesLeftbackup.png" alt="">
-    <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">
-    <img class="octImgLeft" src="/tentaculos_rasterizado.gif" alt="">
+<!--    <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">-->
+    <img class="octImgLeft" src="/tentaclesLeft.png" alt="">
+<!--    <img class="octImgLeft" src="/tentaculos_rasterizado.gif" alt="">-->
     <div class="mainContainer">
       <div class="header">
         <div class="creaturesPageHeader">
@@ -30,8 +31,9 @@ const router = useRouter();
       </div>
       <div class="footer"></div>
     </div>
-    <img class="octImgRight" src="/tentaculos_rasterizado.gif" alt="">
-    <img class="particlesRight" src="/particle.gif" alt="" width="500px" height="auto">
+    <img class="octImgRight" src="/tentaclesLeft.png" alt="">
+<!--    <img class="octImgRight" src="/tentaculos_rasterizado.gif" alt="">-->
+<!--    <img class="particlesRight" src="/particle.gif" alt="" width="500px" height="auto">-->
     <img class="tentacleBackground" src="/green_resized800_tentaclesRightbackup.png" alt="">
   </div>
 </template>
@@ -51,6 +53,8 @@ const router = useRouter();
   --dropshadow2: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.95));
   --dropshadow3: drop-shadow(0px 0px 5px var(--green));
   --dropshadow4: drop-shadow(0px 10px 7px rgba(0, 0, 0, 0.95));
+  --dropshadow5: drop-shadow(0px 0px 1px rgba(0, 0, 0, 1))
+  drop-shadow(10px 10px 15px rgba(0, 0, 0, 1));
   --font: 'Courier New', 'monospace';
   --inset: -25em;
 }
@@ -101,6 +105,7 @@ span{
 
 /*PARTICLES*/
 .particlesRight{
+  z-index: -1;
   rotate: 90deg;
   margin-left: -10em;
   margin-right: var(--inset);
@@ -120,20 +125,19 @@ span{
 
 /*IMAGES*/
 .octImgLeft{
-  transform: scaley(-1);
   scale: 1.1;
   z-index: 1;
   margin-right: -2em;
   margin-left: -28em;
-  filter: var(--dropshadow2);
+  filter: var(--dropshadow5);
 }
 .octImgRight{
-  transform: scaleX(-1) scaley(-1);
+  transform: scaleX(-1);
   scale: 1.1;
   z-index: 1;
   margin-left: -2em;
   margin-right: -28em;
-  filter: var(--dropshadow1);
+  filter: var(--dropshadow5);
 }
 .tentacleBackground{
   z-index: -2;
