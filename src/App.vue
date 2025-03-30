@@ -102,7 +102,7 @@ span{
 /*PARTICLES*/
 .particlesRight{
   rotate: 90deg;
-  margin-left: -8em;
+  margin-left: -10em;
   margin-right: var(--inset);
   margin-bottom: 5em;
   mix-blend-mode: screen;
@@ -112,7 +112,7 @@ span{
   transform: scaleX(-1);
   rotate: -90deg;
   margin-left: var(--inset);
-  margin-right: -8em;
+  margin-right: -10em;
   margin-bottom: 5em;
   mix-blend-mode: screen;
   filter: hue-rotate(80deg);
