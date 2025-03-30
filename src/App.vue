@@ -6,7 +6,7 @@ const router = useRouter();
 
 <template>
   <div class="mainHomeContainer">
-    <img class="tentacleBackground" src="/tentaculos_arestassolidas_verde.gif" alt="">
+    <img class="tentacleBackground" src="/green_resized800_tentaclesLeftbackup.png" alt="">
     <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">
     <img class="octImgLeft" src="/tentaculos_rasterizado.gif" alt="">
     <div class="mainContainer">
@@ -136,11 +136,10 @@ span{
   filter: var(--dropshadow1);
 }
 .tentacleBackground{
-  margin-right:-2em;
   z-index: -2;
   height: 600px;
   width: auto;
-  scale: 1.2;
+  scale: 1.5;
   filter: var(--dropshadow2);
 }
 
