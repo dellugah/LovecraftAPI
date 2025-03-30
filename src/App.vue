@@ -51,6 +51,8 @@ const router = useRouter();
   --dropshadow2: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.95));
   --dropshadow3: drop-shadow(0px 0px 5px var(--green));
   --dropshadow4: drop-shadow(0px 10px 7px rgba(0, 0, 0, 0.95));
+  --dropshadow5: drop-shadow(0px 0px 1px rgba(0, 0, 0, 1))
+  drop-shadow(10px 10px 15px rgba(0, 0, 0, 1));
   --font: 'Courier New', 'monospace';
   --inset: -25em;
 }
@@ -101,6 +103,7 @@ span{
 
 /*PARTICLES*/
 .particlesRight{
+  z-index: -1;
   rotate: 90deg;
   margin-left: -10em;
   margin-right: var(--inset);
@@ -109,6 +112,7 @@ span{
   filter: hue-rotate(80deg);
 }
 .particlesLeft{
+  z-index: -1;
   transform: scaleX(-1);
   rotate: -90deg;
   margin-left: var(--inset);
@@ -125,7 +129,7 @@ span{
   z-index: 1;
   margin-right: -2em;
   margin-left: -28em;
-  filter: var(--dropshadow2);
+  filter: var(--dropshadow5);
 }
 .octImgRight{
   transform: scaleX(-1) scaley(-1);
@@ -133,7 +137,7 @@ span{
   z-index: 1;
   margin-left: -2em;
   margin-right: -28em;
-  filter: var(--dropshadow1);
+  filter: var(--dropshadow5);
 }
 .tentacleBackground{
   z-index: -2;
