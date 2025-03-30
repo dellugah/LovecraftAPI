@@ -243,6 +243,7 @@ span{
   filter: drop-shadow(0px 0px 2px var(--green)) grayscale(100%) contrast(140%);
 }
 .img{
+  margin-bottom: -2px;
   margin-left:-5px;
   margin-right: -5px;
 }
