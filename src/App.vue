@@ -7,9 +7,13 @@ const router = useRouter();
 <template>
   <div class="mainHomeContainer">
     <img class="tentacleBackground" src="/green_resized800_tentaclesLeftbackup.png" alt="">
-<!--    <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">-->
-    <img class="octImgLeft" src="/tentaclesLeft.png" alt="">
+    <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">
+<!--    <img class="octImgLeft" src="/tentaclesLeft.png" alt="">-->
 <!--    <img class="octImgLeft" src="/tentaculos_rasterizado.gif" alt="">-->
+    <video class="octImgLeft" autoplay loop muted>
+      <source src="/tentaculos.mp4" type="video/mp4">
+    </video>
+
     <div class="mainContainer">
       <div class="header">
         <div class="creaturesPageHeader">
@@ -31,9 +35,12 @@ const router = useRouter();
       </div>
       <div class="footer"></div>
     </div>
-    <img class="octImgRight" src="/tentaclesLeft.png" alt="">
+    <video class="octImgRight" autoplay loop muted>
+      <source src="/tentaculos.mp4" type="video/mp4">
+    </video>
+<!--    <img class="octImgRight" src="/tentaclesLeft.png" alt="">-->
 <!--    <img class="octImgRight" src="/tentaculos_rasterizado.gif" alt="">-->
-<!--    <img class="particlesRight" src="/particle.gif" alt="" width="500px" height="auto">-->
+    <img class="particlesRight" src="/particle.gif" alt="" width="500px" height="auto">
     <img class="tentacleBackground" src="/green_resized800_tentaclesRightbackup.png" alt="">
   </div>
 </template>
@@ -126,19 +133,20 @@ span{
 
 /*IMAGES*/
 .octImgLeft{
-  scale: 1.1;
+  transform: scaleY(-1);
+  mix-blend-mode: darken;
+  scale: 1;
   z-index: 1;
   margin-right: -2em;
   margin-left: -28em;
-  filter: var(--dropshadow5);
 }
 .octImgRight{
-  transform: scaleX(-1);
-  scale: 1.1;
+  transform: scaleX(-1) scaleY(-1);
+  scale: 1;
   z-index: 1;
+  mix-blend-mode: darken;
   margin-left: -2em;
   margin-right: -28em;
-  filter: var(--dropshadow5);
 }
 .tentacleBackground{
   z-index: -2;
