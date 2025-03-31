@@ -6,21 +6,17 @@ const router = useRouter();
 
 <template>
   <div class="mainHomeContainer">
-    <img class="tentacleBackgroundRight" src="/tentaculos_arestassolidas_verde.gif" alt="">
+    <img class="tentacleBackgroundRight" src="/green_resized800_tentaclesLeftbackup.png" alt="">
     <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">
-<!--    <img class="octImgLeft" src="/tentaclesLeft.png" alt="">-->
-    <video class="octImgLeft" autoplay loop muted>
-      <source src="/tentaculos.mp4" type="video/mp4">
-    </video>
-
+    <img class="octImgLeft" src="/tentaclesLeft.png" alt="">
     <div class="mainContainer">
       <div class="header">
         <div class="creaturesPageHeader">
-          <img class="img" src="/green_resized800_tentaclesLeft.png" alt="" height="100" width="auto">
+          <img class="imgLeft" src="/tentaculos_arestassolidas_verde.gif" alt="" height="100" width="auto">
           <div class="headerCreatures">
             <h2><span class="heading">Lovecraft API</span></h2>
           </div>
-          <img class="img" src="/green_resized800_tentaclesRight.png" alt="" height="100" width="auto">
+          <img class="imgRight" src="/tentaculos_arestassolidas_verde.gif" alt="" height="100" width="auto">
         </div>
         <div class="buttonContainer">
           <div class="button"><router-link to="/">Home</router-link></div>
@@ -34,12 +30,9 @@ const router = useRouter();
       </div>
       <div class="footer"></div>
     </div>
-    <video class="octImgRight" autoplay loop muted>
-      <source src="/tentaculos.mp4" type="video/mp4">
-    </video>
-<!--    <img class="octImgRight" src="/tentaclesLeft.png" alt="">-->
+    <img class="octImgRight" src="/tentaclesLeft.png" alt="">
     <img class="particlesRight" src="/particle.gif" alt="" width="500px" height="auto">
-    <img class="tentacleBackgroundLeft" src="/tentaculos_arestassolidas_verde.gif" alt="">
+    <img class="tentacleBackgroundLeft" src="/green_resized800_tentaclesLeftbackup.png" alt="">
   </div>
 </template>
 
@@ -131,7 +124,6 @@ span{
 
 /*IMAGES*/
 .octImgLeft{
-  transform: scaleY(-1);
   mix-blend-mode: darken;
   scale: 1;
   z-index: 1;
@@ -139,7 +131,7 @@ span{
   margin-left: -28em;
 }
 .octImgRight{
-  transform: scaleX(-1) scaleY(-1);
+  transform: scaleX(-1);
   scale: 1;
   z-index: 1;
   mix-blend-mode: darken;
@@ -147,20 +139,20 @@ span{
   margin-right: -28em;
 }
 .tentacleBackgroundRight{
-  margin-right: -1em;
+  margin-right: 4em;
   z-index: -2;
   height: 600px;
   width: auto;
-  scale: 1;
+  scale: 1.3;
   filter: var(--dropshadow1);
 }
 .tentacleBackgroundLeft{
-  margin-left: -1em;
+  margin-left: 4em;
   transform: scaleX(-1);
   z-index: -2;
   height: 600px;
   width: auto;
-  scale: 1;
+  scale: 1.3;
   filter: var(--dropshadow1);
 }
 
@@ -265,11 +257,22 @@ span{
   justify-content: center;
   filter: drop-shadow(0px 0px 2px var(--green)) grayscale(100%) contrast(140%);
 }
-.img{
-  margin-bottom: -2px;
+.imgLeft{
+  margin-bottom: .1em;
+  scale: .9;
+  transform: scaleY(-1);
   margin-left:-5px;
   margin-right: -5px;
 }
+
+.imgRight{
+  scale: .9;
+  margin-bottom: .1em;
+  transform: scaleX(-1) scaleY(-1);
+  margin-left:-5px;
+  margin-right: -5px;
+}
+
 .headerCreatures {
   color: var(--black);
   display: flex;
@@ -283,7 +286,7 @@ span{
   background-color: var(--green);
   margin-left: -3px;
   margin-right:-3px;
-  border-radius: .5em;
+  border-radius: .3em;
 }
 .heading {
   font-size: 1em;
