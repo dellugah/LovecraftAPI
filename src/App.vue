@@ -6,10 +6,9 @@ const router = useRouter();
 
 <template>
   <div class="mainHomeContainer">
-    <img class="tentacleBackground" src="/green_resized800_tentaclesLeftbackup.png" alt="">
+    <img class="tentacleBackgroundRight" src="/tentaculos_arestassolidas_verde.gif" alt="">
     <img class="particlesLeft" src="/particle.gif" alt="" width="500px" height="auto">
 <!--    <img class="octImgLeft" src="/tentaclesLeft.png" alt="">-->
-<!--    <img class="octImgLeft" src="/tentaculos_rasterizado.gif" alt="">-->
     <video class="octImgLeft" autoplay loop muted>
       <source src="/tentaculos.mp4" type="video/mp4">
     </video>
@@ -39,9 +38,8 @@ const router = useRouter();
       <source src="/tentaculos.mp4" type="video/mp4">
     </video>
 <!--    <img class="octImgRight" src="/tentaclesLeft.png" alt="">-->
-<!--    <img class="octImgRight" src="/tentaculos_rasterizado.gif" alt="">-->
     <img class="particlesRight" src="/particle.gif" alt="" width="500px" height="auto">
-    <img class="tentacleBackground" src="/green_resized800_tentaclesRightbackup.png" alt="">
+    <img class="tentacleBackgroundLeft" src="/tentaculos_arestassolidas_verde.gif" alt="">
   </div>
 </template>
 
@@ -148,12 +146,22 @@ span{
   margin-left: -2em;
   margin-right: -28em;
 }
-.tentacleBackground{
+.tentacleBackgroundRight{
+  margin-right: -1em;
   z-index: -2;
   height: 600px;
   width: auto;
-  scale: 1.5;
-  filter: var(--dropshadow2);
+  scale: 1;
+  filter: var(--dropshadow1);
+}
+.tentacleBackgroundLeft{
+  margin-left: -1em;
+  transform: scaleX(-1);
+  z-index: -2;
+  height: 600px;
+  width: auto;
+  scale: 1;
+  filter: var(--dropshadow1);
 }
 
 /*FORMATING*/
