@@ -114,6 +114,7 @@ span{
   filter: hue-rotate(80deg);
 }
 .particlesLeft{
+  z-index: -1;
   transform: scaleX(-1);
   rotate: -90deg;
   margin-left: var(--inset);
