@@ -81,17 +81,21 @@ onMounted(() => {
 <template>
   <section v-if="creatures?.length > 0">
     <div class="creaturesMainContainer">
-      <div class="creaturesSelectionContainer">
-        <img id="tentacleTop" src="/tentaclesTop.png" alt="" height="150" width="auto">
-        <div class="creaturesScrollable">
-          <div class="creatureBlock"></div>
-          <div class="creaturesSelection" v-for="(creature, index) in creatures" @click="selectCreature(creature.id)">
-            <span :id="creature.id" class="creatureName">{{creature.name}}</span>
+      <div class="authorSelection">
+        <div class="authorsSelectionContainer">
+          <img id="tentacleTop" src="/tentaclesTop.png" alt="" height="150" width="auto">
+          <div class="authorsScrollable">
+            <div class="authorBlock"></div>
+            <div class="authorsSelection" v-for="(creature, index) in creatures" @click="selectCreature(creature.id)">
+              <span :id="creature.id" class="authorName">{{creature.name}}</span>
+            </div>
+            <div class="authorBlock"></div>
           </div>
-          <div class="creatureBlock"></div>
+          <img id="tentacleBottom" src="/tentaclesBottom.png" alt="" height="150" width="auto">
         </div>
-        <img id="tentacleBottom" src="/tentaclesBottom.png" alt="" height="150" width="auto">
       </div>
+
+
 <!--      if creature is loaded      -->
       <div class="creaturesProfileContainer" v-if="creature?.name">
         <div class="creatureInfo">
@@ -140,14 +144,14 @@ onMounted(() => {
 <style scoped>
 .creaturesMainContainer{
   display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
   flex-direction: row;
-  place-items: center;
-  justify-items: center;
-  justify-content: center;
-  height: 32em;
-  width: 60em;
+  height: 547px;
+  width: 900px;
+  gap: .1em;
 }
-.creaturesSelectionContainer{
+.authorsSelectionContainer{
   z-index: 3;
   overflow-y: auto;
   overflow-x: hidden;
@@ -157,12 +161,10 @@ onMounted(() => {
   justify-items: center;
   justify-content: center;
   position: absolute;
-  margin-top: 5em;
-  left: 2em;
   height: 35em;
   width: 20em;
 }
-.creaturesSelectionContainer::before {
+.authorsSelectionContainer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -174,7 +176,16 @@ onMounted(() => {
   box-shadow: inset 0 50px 40px rgb(0, 0, 0),
   inset 0 -50px 40px rgb(0, 0, 0);
 }
-.creaturesScrollable {
+.authorSelection{
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 21em;
+}
+.authorsScrollable {
   display: grid;
   flex-direction: column;
   place-items: center;
@@ -201,7 +212,7 @@ onMounted(() => {
   height: 30em;
   width: 37em;
 }
-.creaturesSelection{
+.authorsSelection{
   user-select: none;
   display: flex;
   flex-direction: column;
@@ -217,24 +228,24 @@ onMounted(() => {
   position: relative;
   transition: 0.1s ease-in-out;
 }
-.creaturesSelection:hover{
+.authorsSelection:hover{
   background-color: var(--brightpurple);
   filter: drop-shadow(0px 0px 10px var(--brightpurple));
   cursor: pointer;
   scale: 1.05;
 }
-.creaturesSelection:active{
+.authorsSelection:active{
   background-color: var(--lightpurple);
   filter: drop-shadow(0px 0px 10px var(--lightpurple));
   scale: 1;
 }
 
-.creatureName{
+.authorName{
   font-weight: bold;
   color: var(--black);
   font-size: 1em;
 }
-.creatureBlock{
+.authorBlock{
   min-height: 6em;
   width: 15em;
 }
@@ -301,10 +312,6 @@ onMounted(() => {
   margin-top: -150px;
   filter: drop-shadow(0px 0px 10px var(--black));
   pointer-events: none;
-}
-#loading{
-  filter: hue-rotate(90deg) contrast(1.1) brightness(1.5) saturate(1.5);
-  mix-blend-mode: screen;
 }
 #loadingBottom{
   z-index: 7;

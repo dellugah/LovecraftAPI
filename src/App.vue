@@ -16,12 +16,12 @@ const router = useRouter();
           <div class="headerCreatures">
             <h2><span class="heading">Lovecraft API</span></h2>
           </div>
-          <img class="imgRight" src="/tentaculos_arestassolidas_verde.gif" alt="" height="100" width="auto">
+          <img class="creatureImageDecoration" src="/tentaculos_arestassolidas_verde.gif" alt="" height="100" width="auto">
         </div>
         <div class="buttonContainer">
           <div class="button"><router-link to="/">Home</router-link></div>
           <div class="button"><router-link to="/creatures">Creatures</router-link></div>
-          <div class="button"><router-link to="/races">Races</router-link></div>
+          <div class="button"><router-link to="/authors">Authors</router-link></div>
           <div class="button"><router-link to="/about">About</router-link></div>
         </div>
       </div>
@@ -91,7 +91,7 @@ body{
   background: rgba(255, 255, 255, 0);
 }
 h1, h2, h3, h4, h5, h6{
-  scale: 1.3;
+  scale: 1;
   font-family: var(--font), 'serif';
   color: white;
   font-weight: bold;
@@ -244,6 +244,9 @@ span{
   color: #e4e4e4;
   font-weight: bold;
 }
+.black{
+  color: var(--black);
+}
 .creaturesPageHeader {
   z-index: 7;
   scale: 1.5;
@@ -265,7 +268,7 @@ span{
   margin-right: -5px;
 }
 
-.imgRight{
+.creatureImageDecoration{
   scale: .9;
   margin-bottom: .1em;
   transform: scaleX(-1) scaleY(-1);
@@ -298,5 +301,9 @@ span{
   flex-direction: row;
   place-items: center;
   justify-items: center;
+}
+#loading{
+  filter: hue-rotate(90deg) contrast(1.1) brightness(1.5) saturate(1.5);
+  mix-blend-mode: screen;
 }
 </style>

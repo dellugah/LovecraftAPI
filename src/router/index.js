@@ -3,7 +3,7 @@ import Home from '../components/Home.vue'
 import About from '../components/About.vue'
 import Creatures from "@/components/Creatures.vue";
 import Images from "@/components/Images.vue";
-import Races from "@/components/Races.vue";
+import Authors from "@/components/Authors.vue";
 
 const routes = [
     {
@@ -27,9 +27,9 @@ const routes = [
         component:Images,
     },
     {
-        path:'/races',
-        name:'Races',
-        component:Races,
+        path:'/authors',
+        name:'Authors',
+        component:Authors,
     },
 ]
 
